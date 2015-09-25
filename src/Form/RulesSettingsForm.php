@@ -51,7 +51,7 @@ class RulesSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('log_level') ? $config->get('log_level') : LogLevel::WARNING,
       '#description' => t('Evaluations errors are logged to available loggers.'),
       '#states' => array(
-        // Hide the regions settings when the debug log is disabled.
+        // Hide the log_level radios when the debug log is disabled.
         'invisible' => array(
           'input[name="log"]' => array('checked' => FALSE),
         ),
