@@ -21,14 +21,16 @@ function rules_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.rules':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Rules documentation is kept online. Please use the links below for more information about Rules. Feel free to contribute to improving the online documentation! For more information, see the <a href=":action" target="_blank">online documentation for the Rules module.</a>',
-          array(':action' => 'https://www.drupal.org/project/rules')) . '</p>';
+      $output .= '<p>' . t('The Rules module allows site administrators to define conditionally executed actions based on occurring events (ECA-rules).') . '</p>';
 
-      $output .= '<h3>' . t('Documentation for Drupal 8') . '</h3>';
+      $output .= '<h3>' . t('External documentation') . '</h3>';
       $output .= '<dl>';
-      $output .= '<dt>Rules documentation</dt>';
+      $output .= '<dt>' . t('Handbook on drupal.org') . '</dt>';
+      $output .= '<dd>' . t('For more information, see the <a href=":action" target="_blank">online documentation for the Rules module.</a> Feel free to contribute to improving the online documentation! ',
+          array(':action' => 'https://www.drupal.org/project/rules')) . '</dd>';
+      $output .= '<dt>' . t('Gitbook') . '</dt>';
       $output .= '<dd>' . t('Find current <a href=":action" target="_blank">Rules documentation</a> for Drupal 8 on Gitbooks.', array(':action' => 'http://thefubhy.gitbooks.io/rules/content/')) . '</dd>';
-      $output .= '<dt>Rules development on Github</dt>';
+      $output .= '<dt>' . t('Rules development on Github') . '</dt>';
       $output .= '<dd>' . t('The newest source code is available on <a href=":action" target="_blank">Github</a>.', array(':action' => 'https://github.com/fago/rules')) . '</dd>';
       $output .= '</dl>';
       return $output;
