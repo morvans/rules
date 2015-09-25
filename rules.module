@@ -8,10 +8,52 @@
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\rules\Event\EntityEvent;
 use Drupal\rules\Event\UserLoginEvent;
 use Drupal\rules\Event\UserLogoutEvent;
-use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rules_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.rules':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Rules documentation is kept online. Please use the links below for more information about Rules. Feel free to contribute to improving the online documentation! For more information, see the <a href="!action" target="_blank">online documentation for the Rules module.</a>',
+          array('!action' => 'https://www.drupal.org/project/rules')) . '</p>';
+
+      $output .= '<h3>' . t('Documentation for Drupal 7') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>Rules introduction</dt>';
+      $output .= '<dd>' . t('To learn what Rules is all about read the <a href="!action" target="_blank">Rules introduction</a>.', array('!action' => 'http://drupal.org/node/298480')) . '</dd>';
+      $output .= '<dt>Site building</dt>';
+      $output .= '<dd>' . t('Look at the <a href="!action" target="_blank">site building</a> documentation to learn how to configure Rules.', array('!action' => 'http://drupal.org/node/1299990')) . '</dd>';
+      $output .= '<dt>Rules Scheduler</dt>';
+      $output .= '<dd>' . t('To schedule the rule set execution read the <a href="!action" target="_blank">Rules Scheduler</a> documentation.', array('!action' => 'http://drupal.org/node/1300068')) . '</dd>';
+      $output .= '<dt>Coding for Rules</dt>';
+      $output .= '<dd>' . t('If you want to write your own Rules, see <a href="!action" target="_blank">Coding for Rules</a>.', array('!action' => 'http://drupal.org/node/878720')) . '</dd>';
+      $output .= '<dt>Combining conditions</dt>';
+      $output .= '<dd>' . t('To understand combining conditions refer to <a href="!action" target="_blank">AND and OR groups</a>.', array('!action' => 'http://drupal.org/node/1300034')) . '</dd>';
+      $output .= '<dt>Data Selection</dt>';
+      $output .= '<dd>' . t('By default, Rules includes a direct input and a data selection interface. The data selection input method allows you to drill down into the data available to Rules. The direct input mode is most useful when entering a new text token, rather than another available data variable. See <a href="!action" target="_blank">Data Selection</a> for details.', array('!action' => 'http://drupal.org/node/1300042')) . '</dd>';
+      $output .= '<dt>Loops</dt>';
+      $output .= '<dd>' . t('<a href="!action" target="_blank">Loops</a> allow performing actions on each of the items included in a list, for example to send e-mail to all users in a multiple-value user reference field, or unpublish all comments belonging to a certain node.', array('!action' => 'http://drupal.org/node/1300058')) . '</dd>';
+      $output .= '<dt>Components</dt>';
+      $output .= '<dd>' . t('<a href="!action" target="_blank">Components</a> are stand-alone Rules configurations that can be called from reaction rules, other modules and programmatically from custom code. Learn about component types, variables when creating components and executing components manually.', array('!action' => 'http://drupal.org/node/1300024')) . '</dd>';
+      $output .= '</dl>';
+
+      $output .= '<h3>' . t('Documentation for Drupal 8') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>Rules documentation</dt>';
+      $output .= '<dd>' . t('Find current <a href="!action" target="_blank">Rules documentation</a> for Drupal 8 on Gitbooks.', array('!action' => 'http://thefubhy.gitbooks.io/rules/content/')) . '</dd>';
+      $output .= '<dt>Rules development on Github</dt>';
+      $output .= '<dd>' . t('The newest source code is available on <a href="!action" target="_blank">Github</a>.', array('!action' => 'https://github.com/fago/rules')) . '</dd>';
+      $output .= '</dl>';
+      return $output;
+  }
+}
 
 /**
  * Implements hook_user_login().
@@ -100,44 +142,3 @@ function rules_entity_update(EntityInterface $entity) {
   }
 }
 
-/**
- * Implements hook_help().
- */
-function rules_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    case 'help.page.rules':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Rules documentation is kept online. Please use the links below for more information about Rules. Feel free to contribute to improving the online documentation! For more information, see the <a href="!action" target="_blank">online documentation for the Rules module.</a>',
-              array('!action' => 'https://www.drupal.org/project/rules')) . '</p>';
-
-      $output .= '<h3>' . t('Documentation for Drupal 7') . '</h3>';
-      $output .= '<dl>';
-      $output .= '<dt>Rules introduction</dt>';
-      $output .= '<dd>' . t('To learn what Rules is all about read the <a href="!action" target="_blank">Rules introduction</a>.', array('!action' => 'http://drupal.org/node/298480')) . '</dd>';
-      $output .= '<dt>Site building</dt>';
-      $output .= '<dd>' . t('Look at the <a href="!action" target="_blank">site building</a> documentation to learn how to configure Rules.', array('!action' => 'http://drupal.org/node/1299990')) . '</dd>';
-      $output .= '<dt>Rules Scheduler</dt>';
-      $output .= '<dd>' . t('To schedule the rule set execution read the <a href="!action" target="_blank">Rules Scheduler</a> documentation.', array('!action' => 'http://drupal.org/node/1300068')) . '</dd>';
-      $output .= '<dt>Coding for Rules</dt>';
-      $output .= '<dd>' . t('If you want to write your own Rules, see <a href="!action" target="_blank">Coding for Rules</a>.', array('!action' => 'http://drupal.org/node/878720')) . '</dd>';
-      $output .= '<dt>Combining conditions</dt>';
-      $output .= '<dd>' . t('To understand combining conditions refer to <a href="!action" target="_blank">AND and OR groups</a>.', array('!action' => 'http://drupal.org/node/1300034')) . '</dd>';
-      $output .= '<dt>Data Selection</dt>';
-      $output .= '<dd>' . t('By default, Rules includes a direct input and a data selection interface. The data selection input method allows you to drill down into the data available to Rules. The direct input mode is most useful when entering a new text token, rather than another available data variable. See <a href="!action" target="_blank">Data Selection</a> for details.', array('!action' => 'http://drupal.org/node/1300042')) . '</dd>';
-      $output .= '<dt>Loops</dt>';
-      $output .= '<dd>' . t('<a href="!action" target="_blank">Loops</a> allow performing actions on each of the items included in a list, for example to send e-mail to all users in a multiple-value user reference field, or unpublish all comments belonging to a certain node.', array('!action' => 'http://drupal.org/node/1300058')) . '</dd>';
-      $output .= '<dt>Components</dt>';
-      $output .= '<dd>' . t('<a href="!action" target="_blank">Components</a> are stand-alone Rules configurations that can be called from reaction rules, other modules and programmatically from custom code. Learn about component types, variables when creating components and executing components manually.', array('!action' => 'http://drupal.org/node/1300024')) . '</dd>';
-      $output .= '</dl>';
-
-      $output .= '<h3>' . t('Documentation for Drupal 8') . '</h3>';
-      $output .= '<dl>';
-      $output .= '<dt>Rules documentation</dt>';
-      $output .= '<dd>' . t('Find current <a href="!action" target="_blank">Rules documentation</a> for Drupal 8 on Gitbooks.', array('!action' => 'http://thefubhy.gitbooks.io/rules/content/')) . '</dd>';
-      $output .= '<dt>Rules development on Github</dt>';
-      $output .= '<dd>' . t('The newest source code is available on <a href="!action" target="_blank">Github</a>.', array('!action' => 'https://github.com/fago/rules')) . '</dd>';
-      $output .= '</dl>';
-      return $output;
-  }
-}
