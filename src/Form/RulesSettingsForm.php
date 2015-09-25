@@ -38,18 +38,18 @@ class RulesSettingsForm extends ConfigFormBase {
 
     $form['log'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Log debug information'),
+      '#title' => $this->t('Log debug information'),
       '#default_value' => $config->get('log'),
     );
     $form['log_level'] = array(
       '#type' => 'radios',
-      '#title' => t('Log level'),
+      '#title' => $this->t('Log level'),
       '#options' => array(
-        LogLevel::WARNING => t('Log all warnings and errors'),
-        LogLevel::ERROR => t('Log errors only'),
+        LogLevel::WARNING => $this->t('Log all warnings and errors'),
+        LogLevel::ERROR => $this->t('Log errors only'),
       ),
       '#default_value' => $config->get('log_level') ? $config->get('log_level') : LogLevel::WARNING,
-      '#description' => t('Evaluations errors are logged to available loggers.'),
+      '#description' => $this->t('Evaluations errors are logged to available loggers.'),
       '#states' => array(
         // Hide the log_level radios when the debug log is disabled.
         'invisible' => array(
